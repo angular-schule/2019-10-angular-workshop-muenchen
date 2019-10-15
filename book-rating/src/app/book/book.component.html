@@ -1,0 +1,19 @@
+<div class="card mb-4">
+  <div class="card-body bg-light">
+    <img src="//api.angular.schule/avatar/{{ book.rating }}" alt="Avatar" class="img-thumbnail float-right">
+
+    <div class="card-title">
+      <h2>
+        {{ book.title }}
+        <span class="badge badge-secondary">{{ book.rating }}</span>
+      </h2>
+    </div>
+
+    <p>{{ book.description }}</p>
+
+    <p>
+      <span *ngFor="let x of getRating()">⭐️</span>
+    </p>
+
+  </div>
+</div>
