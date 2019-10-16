@@ -1,9 +1,11 @@
-<br-book
+<ng-container *ngIf="books">
+  <br-book
   *ngFor="let b of books"
   [book]="b"
   (rateUp)="rateUp($event)"
   (rateDown)="rateDown(b)"></br-book>
 
-<p>
-  <strong>Anzahl Bücher:</strong> {{ books.length }}
-</p>
+  <p>
+    <strong>Anzahl Bücher:</strong> {{ books.length }}
+  </p>
+</ng-container>
