@@ -1,5 +1,15 @@
+<nav class="navbar bg-light navbar-light">
+  <span class="navbar-brand">Book Rating</span>
+
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link" routerLink="/books">Dashboard</a>
+    </li>
+  </ul>
+</nav>
+
 <div class="container">
   <h1>{{ title }}</h1>
 
-  <br-dashboard></br-dashboard>
+  <router-outlet></router-outlet>
 </div>

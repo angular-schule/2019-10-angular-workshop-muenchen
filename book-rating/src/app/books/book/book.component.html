@@ -18,7 +18,12 @@
     <button class="btn btn-success mr-2" (click)="doRateUp()" data-testid="rateUpBtn"> + </button>
     <button class="btn btn-danger mr-2" (click)="doRateDown()"> – </button>
 
+    <a [routerLink]="['/books', book.isbn]">Details</a>
   </div>
 </div>
 
 {{ log() }}
+
+
+// Link Detailseite > Dashboard
+// Navbar: in AppComponent
