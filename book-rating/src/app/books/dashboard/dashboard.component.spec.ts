@@ -3,9 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DashboardComponent } from './dashboard.component';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
-import { BookComponent } from '../book/book.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
 
@@ -27,11 +27,12 @@ fdescribe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent, BookComponent ],
+      declarations: [ DashboardComponent ],
       providers: [
         // Abhängigkeit ersetzen: Jeder, der BookRatingService anfordert, erhält ratingMock
         { provide: BookRatingService, useValue: ratingMock }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA] // Shallow Component Test: Kindkomponenten ignorieren
     })
     .compileComponents();
   }));
