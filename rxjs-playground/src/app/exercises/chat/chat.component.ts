@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, merge, concat, race, forkJoin } from 'rxjs';
+import { Subject, merge, concat, race, forkJoin, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
@@ -30,6 +30,27 @@ export class ChatComponent implements OnInit {
      * - forkJoin (When all observables complete, emit the last emitted value from each.)
      */
 
+    function addName(name: string) {
+      return map(msg => `${name}: ${msg}`);
+    }
+
+    race(
+      this.msg.julia$.pipe(addName('JULIA')),
+      this.msg.georg$.pipe(addName('GEORG')),
+      this.msg.john$.pipe(addName('GEORG'))
+    ).subscribe(
+      msg => this.log(msg),
+      () => {},
+      () => this.log('All members left.')
+    );
+
+    // startWith selbst bauen
+    function myStartWith(e: any) {
+      return (source$) => {
+        return concat(of(e), source$);
+      };
+    }
+    of(1,2,3).pipe(myStartWith(0)).subscribe(console.log);
 
 
     /******************************/
