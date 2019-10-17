@@ -1,4 +1,4 @@
-<form [formGroup]="bookForm">
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
 
   <div class="form-group">
     <label>ISBN</label>
@@ -24,12 +24,21 @@
 
   <div class="form-group" formArrayName="authors">
     <label>Autoren</label>
-    <button class="btn btn-sm btn-secondary" (click)="addAuthor()"> + </button>
+    <button type="button" class="btn btn-sm btn-secondary" (click)="addAuthor()"> + </button>
 
     <div *ngFor="let a of authors.controls; index as i">
-      <button class="btn btn-sm btn-danger" (click)="removeAuthor(i)"> X </button>
+      <button type="button" class="btn btn-sm btn-danger" (click)="removeAuthor(i)"> X </button>
       <input type="text" [formControlName]="i" class="form-control mb-1">
     </div>
+  </div>
+
+  <div class="form-group">
+    <button
+      class="btn btn-success mr-2"
+      type="submit"
+      [disabled]="bookForm.invalid">Abschicken</button>
+
+      <a routerLink="/books" class="btn btn-danger">Abbrechen</a>
   </div>
 
 </form>

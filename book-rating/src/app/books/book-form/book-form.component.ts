@@ -58,8 +58,12 @@ export class BookFormComponent implements OnInit {
   }
 
   submitForm() {
+    const newBook: Book = {
+      ...this.bookForm.value,
+      rating: 1
+    };
 
-    this.submitBook.emit();
+    this.submitBook.emit(newBook);
   }
 
 }

@@ -13,6 +13,8 @@ export class CreateBookContainerComponent implements OnInit {
   ngOnInit() {
   }
 
-  createBook(book: Book) {}
+  createBook(book: Book) {
+    console.log(book);
+  }
 
 }
