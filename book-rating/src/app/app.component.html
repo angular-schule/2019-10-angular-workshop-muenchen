@@ -3,15 +3,15 @@
 
   <ul class="navbar-nav mr-auto">
     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link" routerLink="/books">Dashboard</a>
+      <a class="nav-link" routerLink="/books" i18n="@@navdashboard">Dashboard</a>
     </li>
 
     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link" routerLink="/books/create">Buch erstellen</a>
+      <a class="nav-link" routerLink="/books/create" i18n="@@navcreate">Buch erstellen</a>
     </li>
 
     <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-      <a class="nav-link" routerLink="/books/search">Suche</a>
+      <a class="nav-link" routerLink="/books/search" i18n="@@navsearch">Suche</a>
     </li>
   </ul>
 </nav>
@@ -19,7 +19,7 @@
 <div class="container">
   <h1>{{ title }}</h1>
   <div>
-    Datum: {{ d | date:'fullDate' }}
+    <ng-container i18n="@@labeldate">Datum</ng-container>: {{ d | date:'fullDate' }}
   </div>
 
   <router-outlet></router-outlet>

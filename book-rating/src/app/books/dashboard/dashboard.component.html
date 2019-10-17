@@ -6,6 +6,9 @@
   (rateDown)="rateDown(b)"></br-book>
 
   <p>
-    <strong>Anzahl Bücher:</strong> {{ books.length }}
+    <strong>
+      <ng-container i18n="@@labelbooknum">Anzahl Bücher</ng-container>:
+    </strong>
+    {{ books.length }}
   </p>
 </ng-container>
