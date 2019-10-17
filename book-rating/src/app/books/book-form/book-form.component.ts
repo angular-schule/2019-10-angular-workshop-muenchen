@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Book } from '../shared/book';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'br-book-form',
@@ -27,6 +27,10 @@ export class BookFormComponent implements OnInit {
       price: new FormControl('', [
         Validators.required,
         Validators.min(1)
+      ]),
+      authors: new FormArray([
+        new FormControl(''),
+        new FormControl('')
       ])
     });
   }
@@ -39,6 +43,18 @@ export class BookFormComponent implements OnInit {
   hasError(name: string, errorCode: string) {
     const control = this.bookForm.get(name);
     return control.hasError(errorCode) && control.touched;
+  }
+
+  get authors() {
+    return this.bookForm.get('authors') as FormArray;
+  }
+
+  addAuthor() {
+    this.authors.push(new FormControl(''));
+  }
+
+  removeAuthor(index: number) {
+    this.authors.removeAt(index);
   }
 
   submitForm() {

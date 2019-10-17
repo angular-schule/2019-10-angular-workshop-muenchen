@@ -22,6 +22,16 @@
     <textarea formControlName="description" class="form-control"></textarea>
   </div>
 
+  <div class="form-group" formArrayName="authors">
+    <label>Autoren</label>
+    <button class="btn btn-sm btn-secondary" (click)="addAuthor()"> + </button>
+
+    <div *ngFor="let a of authors.controls; index as i">
+      <button class="btn btn-sm btn-danger" (click)="removeAuthor(i)"> X </button>
+      <input type="text" [formControlName]="i" class="form-control mb-1">
+    </div>
+  </div>
+
 </form>
 
 <pre>
