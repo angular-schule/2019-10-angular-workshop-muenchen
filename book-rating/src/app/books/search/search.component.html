@@ -3,3 +3,11 @@
     type="text"
     formControlName="term">
 </div>
+
+<strong *ngIf="isLoading">Laden...</strong>
+
+<ul *ngIf="results$ | async as results">
+  <li *ngFor="let book of results">
+    <a [routerLink]="['/books', book.isbn]">{{ book.title }}</a>
+  </li>
+</ul>

@@ -14,7 +14,7 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Book[]>(`${this.apiUrl}/booksx`).pipe(
+    return this.http.get<Book[]>(`${this.apiUrl}/books`).pipe(
       catchError(err => {
         return of([
           {
@@ -43,7 +43,9 @@ export class BookStoreService {
   }
 
   search(term: string) {
-    return this.http.get<Book[]>(`${this.apiUrl}/books/search/${term}`);
+    return this.http.get<Book[]>(`${this.apiUrl}/books/search/${term}`).pipe(
+      catchError(err => of([]))
+    );
   }
 
 }
