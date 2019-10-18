@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
+import { forkJoin, Observable } from 'rxjs';
 
 @Component({
   selector: 'br-book-details',
@@ -11,7 +12,7 @@ import { Book } from '../shared/book';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book: Book;
+  book$: Observable<Book>;
 
   constructor(private route: ActivatedRoute, private bs: BookStoreService) { }
 
@@ -25,10 +26,10 @@ export class BookDetailsComponent implements OnInit {
       this.bs.getSingle(isbn).subscribe(book => this.book = book);
     });*/
 
-    this.route.paramMap.pipe(
+    this.book$ = this.route.paramMap.pipe(
       map(params => params.get('isbn')),
       switchMap(isbn => this.bs.getSingle(isbn))
-    ).subscribe(book => this.book = book);
+    );
   }
 
 }
