@@ -1,4 +1,4 @@
-<ng-container *ngIf="books">
+<ng-container *ngIf="books$ | async as books">
   <br-book
   *ngFor="let b of books"
   [book]="b"
@@ -12,3 +12,7 @@
     {{ books.length }}
   </p>
 </ng-container>
+
+<strong *ngIf="loading$ | async">
+  Laden...
+</strong>
