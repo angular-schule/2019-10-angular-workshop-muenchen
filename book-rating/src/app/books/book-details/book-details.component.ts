@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map, switchMap } from 'rxjs/operators';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
 
@@ -19,10 +20,15 @@ export class BookDetailsComponent implements OnInit {
     // console.log(isbn);
 
     // TODO: Doppelte Subscription vermeiden
-    this.route.paramMap.subscribe(params => {
+    /*this.route.paramMap.subscribe(params => {
       const isbn = params.get('isbn');
       this.bs.getSingle(isbn).subscribe(book => this.book = book);
-    });
+    });*/
+
+    this.route.paramMap.pipe(
+      map(params => params.get('isbn')),
+      switchMap(isbn => this.bs.getSingle(isbn))
+    ).subscribe(book => this.book = book);
   }
 
 }

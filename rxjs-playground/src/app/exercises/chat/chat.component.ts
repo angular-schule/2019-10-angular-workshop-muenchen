@@ -34,7 +34,7 @@ export class ChatComponent implements OnInit {
       return map(msg => `${name}: ${msg}`);
     }
 
-    race(
+    merge(
       this.msg.julia$.pipe(addName('JULIA')),
       this.msg.georg$.pipe(addName('GEORG')),
       this.msg.john$.pipe(addName('GEORG'))

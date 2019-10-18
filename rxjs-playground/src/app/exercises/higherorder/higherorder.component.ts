@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
-import { mergeMap, concatMap, switchMap, exhaustMap } from 'rxjs/operators';
+import { Subject, Observable, of } from 'rxjs';
+import { mergeMap, concatMap, switchMap, exhaustMap, map, mergeAll } from 'rxjs/operators';
 
 import { ExerciseService } from '../exercise.service';
 
@@ -23,6 +23,24 @@ export class HigherorderComponent implements OnInit {
      * Quelle: this.source$
      * Ziel: this.result$
      */
+
+    this.result$ = this.source$.pipe(
+      exhaustMap(tier => this.es.echo(tier))
+    );
+
+    /*const myArr = [[1,2], [3,4], [5,6]];
+    console.log(myArr.flat());
+
+
+    const myObs = of(
+      of(1,2),
+      of(3,4),
+      of(5,6)
+    );
+
+    myObs.pipe(
+      mergeAll()
+    ).subscribe(console.log);*/
 
 
 
