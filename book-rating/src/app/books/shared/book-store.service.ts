@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from './book';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,20 @@ export class BookStoreService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<Book[]>(`${this.apiUrl}/books`);
+    return this.http.get<Book[]>(`${this.apiUrl}/booksx`).pipe(
+      catchError(err => {
+        return of([
+          {
+            title: 'Fehlerbuch!',
+            isbn: '000',
+            description: 'Es ist ein Fehler aufgetreten.',
+            authors: [],
+            price: 100,
+            rating: 1
+          }
+        ]);
+      })
+    );
   }
 
   getSingle(isbn: string) {
